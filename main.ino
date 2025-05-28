@@ -1,13 +1,20 @@
+// Permite conectar o esp32 à internet.
 #include <WiFi.h>
+// Biblioteca para utilizar o protocolo MQTT, que envia os dados para o Node-Red
 #include <PubSubClient.h>
+// Controla o sensor de temperatura e umidade DHT22
 #include <DHT.h>
+// Permite controlar os ServoMotores, simulando abertura das comportas
 #include <ESP32Servo.h>
 
+// Define o nome da rede Wi-Fi e a porta do servidor MQTT
 const char* ssid = "Wokwi-GUEST";
 const char* password = "";
 
 const char* mqttServer = "test.mosquitto.org";
 const int mqttPort = 1883;
+
+// Variáveis, definição de pinos e inicialização de objetos
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -28,6 +35,8 @@ DHT dht(DHTPIN, DHTTYPE);
 long duracao;
 int dist = 0;
 
+// Conexão com Wi-Fi
+
 void setup_wifi() {
   WiFi.begin(ssid, password);
   Serial.print("Conectando ao Wi-Fi");
@@ -37,6 +46,8 @@ void setup_wifi() {
   }
   Serial.println(" conectado");
 }
+
+// Reconecta ao MQTT caso caia
 
 void reconnect() {
   while (!client.connected()) {
@@ -50,6 +61,8 @@ void reconnect() {
     }
   }
 }
+
+// Setup principal, iniciando motores, conexão MQTT, Leds, Ultrasônico e DHT.
 
 void setup() {
   Serial.begin(9600);
@@ -68,11 +81,15 @@ void setup() {
   myServo2.write(0);
 }
 
+// Loop Principal
+
 void loop() {
   if (!client.connected()) {
     reconnect();
   }
   client.loop();
+
+// Medidor de distância com sensor ultrassônico
 
   digitalWrite(trigger, LOW);
   delayMicroseconds(2);
@@ -83,12 +100,18 @@ void loop() {
   duracao = pulseIn(echo, HIGH);
   dist = duracao / 58;
 
+// Leitura de temperatura e umidade
+
   float temperatura = dht.readTemperature();
   float umidade = dht.readHumidity();
+
+// Publicação de dados via MQTT
 
   client.publish("iot/agua/distancia", String(dist).c_str());
   client.publish("iot/agua/temperatura", String(temperatura).c_str());
   client.publish("iot/agua/umidade", String(umidade).c_str());
+
+// Debug de Serial
 
   Serial.print("Distancia: ");
   Serial.println(dist);
@@ -98,6 +121,8 @@ void loop() {
 
   Serial.print("Umidade: ");
   Serial.println(umidade);
+
+// Lógica de Alerta e controla das comportas
 
   if (dist < 10) {
     myServo1.write(0);
