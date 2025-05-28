@@ -1,0 +1,196 @@
+[
+    {
+        "id": "f1d6e1d7c5d7aa1e",
+        "type": "tab",
+        "label": "Painel de Medições",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a8b2bcd5a4f4bb1a",
+        "type": "mqtt in",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "MQTT - Distância",
+        "topic": "iot/agua/distancia",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "723ba3f09d4c8b71",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 80,
+        "wires": [
+            [
+                "b7d63aa6de6811ea"
+            ]
+        ]
+    },
+    {
+        "id": "b7d63aa6de6811ea",
+        "type": "ui_gauge",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "Nível de Água",
+        "group": "bb0e7b134eb6de59",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Nível de Água (cm)",
+        "label": "cm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#02c9e3",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 420,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1f6dfc1877c3cc7e",
+        "type": "mqtt in",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "MQTT - Temperatura",
+        "topic": "iot/agua/temperatura",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "723ba3f09d4c8b71",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "6c6e370d1cc9a9a2"
+            ]
+        ]
+    },
+    {
+        "id": "6c6e370d1cc9a9a2",
+        "type": "ui_gauge",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "Temperatura",
+        "group": "bb0e7b134eb6de59",
+        "order": 2,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Temperatura (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 50,
+        "colors": [
+            "#e64805",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 410,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fef6df1767a3687b",
+        "type": "mqtt in",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "MQTT - Umidade",
+        "topic": "iot/agua/umidade",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "723ba3f09d4c8b71",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "25ab9cf998e65e4d"
+            ]
+        ]
+    },
+    {
+        "id": "25ab9cf998e65e4d",
+        "type": "ui_gauge",
+        "z": "f1d6e1d7c5d7aa1e",
+        "name": "Umidade",
+        "group": "bb0e7b134eb6de59",
+        "order": 3,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Umidade (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 100,
+        "colors": [
+            "#3af2e6",
+            "#0472e7",
+            "#2a57b2"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 400,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "723ba3f09d4c8b71",
+        "type": "mqtt-broker",
+        "name": "Broker Mosquitto",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "bb0e7b134eb6de59",
+        "type": "ui_group",
+        "name": "Medições",
+        "tab": "0a6e22ab11a40e5f",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "0a6e22ab11a40e5f",
+        "type": "ui_tab",
+        "name": "Painel Principal",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
