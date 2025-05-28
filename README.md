@@ -51,7 +51,7 @@ Criar uma solução IoT com Edge Computing para detectar precocemente situaçõe
 
 ## 🔗 Link do Projeto no Wokwi
 
-[🔗 Acesse no Wokwi](https://wokwi.com/projects/432161784302052353)
+[🔗 Acesse o Wokwi pelo Link](https://wokwi.com/projects/432161784302052353)
 
 ## ▶️ Como Executar
 
